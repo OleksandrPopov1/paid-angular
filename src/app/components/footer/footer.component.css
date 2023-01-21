@@ -1,0 +1,42 @@
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 0 20px;
+
+  background-color: #22539f;
+  color: snow;
+}
+
+.footerLogoContainer {
+  display: flex;
+}
+
+.footerLogoContainer figure{
+  margin-left: 10px;
+}
+
+.footerLogoContainer img {
+  transition: 400ms;
+  width: 30px;
+  height: 30px;
+}
+
+.footerContainer a{
+  color: snow;
+  text-decoration: none;
+
+}
+
+.footerContainer mat-icon{
+  width: 40px;
+  transition: 400ms;
+}
+
+.footerContainer mat-icon:hover,
+.footerContainer img:hover{
+  transform: scale(1.3);
+  color: #dacece;
+}

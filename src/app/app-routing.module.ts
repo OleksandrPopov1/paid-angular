@@ -1,10 +1,26 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {CommonModule} from "@angular/common";
+import {MainLayoutComponent} from "./layouts/main-layout/main-layout.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '', component: MainLayoutComponent, children: [
+      {path: '', redirectTo: 'orders', pathMatch: 'full'},
+      {path: 'orders', loadChildren: () => import('./modules/orders/orders.module').then(value => value.OrdersModule)},
+      {path: 'login', loadChildren: ()=> import('./modules/login/login.module').then(value => value.LoginModule)}
+    ]
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

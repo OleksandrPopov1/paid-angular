@@ -1,0 +1,11 @@
+.headerContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 0 20px;
+
+  background-color: #22539f;
+  color: snow;
+}
