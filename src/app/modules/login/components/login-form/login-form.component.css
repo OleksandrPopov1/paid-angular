@@ -1,0 +1,8 @@
+.loginFormContainer{
+  background-color: snow;
+}
+
+.loginFormError{
+  font-size: 14px;
+  font-weight: 600;
+}
