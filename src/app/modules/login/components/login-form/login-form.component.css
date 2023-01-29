@@ -1,8 +1,16 @@
-.loginFormContainer{
+.loginFormContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   background-color: snow;
 }
 
-.loginFormError{
+.loginFormEmailInput {
+  width: 236px;
+}
+
+.loginFormError {
   font-size: 14px;
-  font-weight: 600;
 }

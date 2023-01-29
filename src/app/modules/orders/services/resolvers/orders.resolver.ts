@@ -18,6 +18,7 @@ export class OrdersResolver implements Resolve<IOrdersPaginated<IOrders>> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IOrdersPaginated<IOrders>> {
-    return this.ordersService.getAll();
+    const newParams = route.queryParams;
+    return this.ordersService.getAll(newParams);
   }
 }

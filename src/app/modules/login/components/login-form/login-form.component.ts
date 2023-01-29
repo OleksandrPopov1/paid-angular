@@ -11,7 +11,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 })
 export class LoginFormComponent implements OnInit {
   form: FormGroup;
-  error: boolean = false;
+  error = false;
   hidePassword = true;
 
   constructor(

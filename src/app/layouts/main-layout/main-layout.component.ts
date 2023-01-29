@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+
+import {AuthService} from "../../modules/login/servisces";
 
 @Component({
   selector: 'app-main-layout',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-layout.component.css']
 })
 export class MainLayoutComponent implements OnInit {
+  isAuth: boolean;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.router.events.subscribe(e => {
+      this.isAuth = this.authService.isAuthenticated();
+    })
   }
 
 }

@@ -1,8 +1,9 @@
-.headerContainer{
+.headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  height: 15vh;
   box-sizing: border-box;
   padding: 0 20px;
 

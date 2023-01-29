@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
 
+  height: 15vh;
   box-sizing: border-box;
   padding: 0 20px;
 
@@ -14,7 +15,7 @@
   display: flex;
 }
 
-.footerLogoContainer figure{
+.footerLogoContainer figure {
   margin-left: 10px;
 }
 
@@ -24,19 +25,19 @@
   height: 30px;
 }
 
-.footerContainer a{
+.footerContainer a {
   color: snow;
   text-decoration: none;
 
 }
 
-.footerContainer mat-icon{
+.footerContainer mat-icon {
   width: 40px;
   transition: 400ms;
 }
 
 .footerContainer mat-icon:hover,
-.footerContainer img:hover{
+.footerContainer img:hover {
   transform: scale(1.3);
   color: #dacece;
 }

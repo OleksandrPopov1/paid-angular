@@ -1,0 +1,46 @@
+<div class="ordersTableContainer">
+  <table
+    mat-table
+    [dataSource]="orders"
+    class="mat-elevation-z8"
+    matSort
+    matSortDisableClear
+    multiTemplateDataRows
+  >
+    <ng-container matColumnDef="{{column.headerServerName}}" *ngFor="let column of headers">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header=>{{ column.headerName }}</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element[column.headerServerName]; else defaultValue">
+          {{ element[column.headerServerName].name ?? element[column.headerServerName] }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="headersName.length">
+        <div class="example-element-detail"
+             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div>{{element}}</div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="headersName; sticky: true"></tr>
+    <tr mat-row *matRowDef="let element; columns: headersName"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (dblclick)="expandedElement = expandedElement === element ? null : element"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+
+  <mat-paginator
+    class="mat-paginator-sticky"
+    [length]="count"
+    [pageSize]="25"
+  />
+</div>
+
+
+<ng-template #defaultValue>
+  null
+</ng-template>

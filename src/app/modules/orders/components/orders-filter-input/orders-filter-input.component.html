@@ -1,4 +1,14 @@
-<mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
-  <input matInput>
+<mat-form-field appearance="fill" *ngIf="filterOptions.isNotSelect; else isSelectOptions">
+  <mat-label>{{filterOptions.filterName}}</mat-label>
+  <input matInput (keyup)="getValue($event)" [value]="value">
 </mat-form-field>
+
+
+<ng-template #isSelectOptions>
+  <mat-form-field appearance="fill">
+    <mat-label>{{filterOptions.filterName}}</mat-label>
+    <mat-select [value]="value">
+      <mat-option *ngFor="let option of filterOptions.selectOptions" [value]="option">{{option}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>

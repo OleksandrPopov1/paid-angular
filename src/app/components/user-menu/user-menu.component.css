@@ -1,0 +1,61 @@
+.headerUserMenuContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerUserName {
+  margin-right: 10px;
+}
+
+.avatar {
+  width: 3rem;
+  border-radius: 100%;
+  text-align: center;
+
+  background: rgb(2, 0, 36);
+  background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(77, 18, 129, 1) 50%, rgba(26, 31, 176, 1) 100%);
+
+  transition: 400ms;
+}
+
+.avatar span {
+  line-height: 3rem;
+  color: snow;
+}
+
+.avatar:hover {
+  transform: scale(1.2);
+}
+
+
+.headerUserMenuHeader,
+.headerUserMenuContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: snow;
+
+  box-sizing: border-box;
+  padding: 0 25px;
+  margin: 0 8px;
+  border-radius: 25px;
+}
+
+.mat-divider {
+  margin: 8px 0;
+}
+
+.headerUserMenuContent > p {
+  margin: 10px 0;
+}
+
+.headerUserMenuContent > div {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 20px;
+}

@@ -1,2 +1,2 @@
-export * from './auth';
-export * from './tokens';
+export * from './auth.interface';
+export * from './tokens.interface';

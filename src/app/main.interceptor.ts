@@ -60,9 +60,6 @@ export class MainInterceptor implements HttpInterceptor {
         })
       )
     }
-
-    this.router.navigate(['/login']);
-    return throwError(() => new Error('Not login'));
   }
 
 }

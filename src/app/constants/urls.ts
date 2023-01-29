@@ -2,15 +2,20 @@ import {environment} from "../../environments/environment";
 
 const {API} = environment;
 
+const auth = `${API}/auth`;
+const orders = `${API}/orders`;
+const user = `${API}/users`;
+
 const urls = {
   auth: {
-    auth: `${API}/auth`,
-    refresh: `${API}/auth/refresh`
+    login: auth,
+    refresh: `${auth}/refresh`
   },
   orders: {
-    orders: `${API}/orders`,
-
-
+    orders: orders,
+  },
+  user: {
+    myUser: `${user}/my`
   }
 };
 

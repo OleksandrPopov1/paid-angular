@@ -1,19 +1,52 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {DatepickerComponent} from './components/datepicker/datepicker.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from '@angular/material/core';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
-import { OrdersRoutingModule } from './orders-routing.module';
-import { OrdersComponent } from './components/orders/orders.component';
-import { OrderComponent } from './components/order/order.component';
-
+import {OrdersRoutingModule} from './orders-routing.module';
+import {OrdersComponent} from './components/orders/orders.component';
+import {OrdersTableComponent} from './components/orders-table/orders-table.component';
+import {OrdersFilterInputComponent} from './components/orders-filter-input/orders-filter-input.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
     OrdersComponent,
-    OrderComponent
+    OrdersTableComponent,
+    OrdersFilterInputComponent,
+    DatepickerComponent,
   ],
   imports: [
     CommonModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatExpansionModule,
+
   ]
 })
-export class OrdersModule { }
+export class OrdersModule {
+}

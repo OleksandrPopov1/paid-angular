@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {LoginFormComponent} from "../login-form/login-form.component";
 
+
 @Component({
   selector: 'app-login',
   template: '',
@@ -15,6 +16,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.dialog.open(LoginFormComponent, {
       disableClose: true,
+      exitAnimationDuration: '1s',
+      enterAnimationDuration: '1s',
 
     });
   }
