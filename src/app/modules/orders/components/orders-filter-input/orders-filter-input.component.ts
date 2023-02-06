@@ -2,7 +2,7 @@ import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core'
 import {MatSelect} from "@angular/material/select";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
-import {IFilterOptions} from "../../interfaces";
+import {IInputOptions} from "../../interfaces";
 
 
 @Component({
@@ -16,9 +16,9 @@ export class OrdersFilterInputComponent implements OnInit, AfterViewInit {
   timeout: any;
 
   @Input()
-  filterOptions: IFilterOptions;
+  filterOptions: IInputOptions;
 
-  @ViewChild(MatSelect) inputSelect: MatSelect
+  @ViewChild(MatSelect) inputSelect: MatSelect;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
   }
@@ -26,7 +26,7 @@ export class OrdersFilterInputComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.allParams = params;
-      this.value = params[`${this.filterOptions.filterServerName}`] ?? '';
+      this.value = params[`${this.filterOptions.inputServerName}`] ?? '';
     });
   }
 
@@ -34,10 +34,11 @@ export class OrdersFilterInputComponent implements OnInit, AfterViewInit {
     if (!this.filterOptions.isNotSelect) {
       this.inputSelect.valueChange.subscribe((value) => {
         this.router.navigate([], {
-          queryParams: {...this.allParams, [this.filterOptions.filterServerName]: value, page: 1}
+          queryParams: {...this.allParams, [this.filterOptions.inputServerName]: value, page: 1}
         });
       });
     }
+
   }
 
   getValue = ({target}: Event) => {
@@ -47,7 +48,7 @@ export class OrdersFilterInputComponent implements OnInit, AfterViewInit {
       const newValue = value === '' ? null : value;
 
       this.router.navigate([], {
-        queryParams: {...this.allParams, [this.filterOptions.filterServerName]: newValue, page: 1},
+        queryParams: {...this.allParams, [this.filterOptions.inputServerName]: newValue, page: 1},
         queryParamsHandling: 'merge'
       })
     }, 500);

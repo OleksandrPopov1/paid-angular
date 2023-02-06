@@ -5,6 +5,7 @@ const {API} = environment;
 const auth = `${API}/auth`;
 const orders = `${API}/orders`;
 const user = `${API}/users`;
+const groups = `${API}/groups`;
 
 const urls = {
   auth: {
@@ -12,7 +13,10 @@ const urls = {
     refresh: `${auth}/refresh`
   },
   orders: {
-    orders: orders,
+    orders
+  },
+  groups: {
+    groups
   },
   user: {
     myUser: `${user}/my`

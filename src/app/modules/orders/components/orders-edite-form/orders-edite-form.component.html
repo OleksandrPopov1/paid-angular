@@ -1,0 +1,47 @@
+<div class="ordersEditeFormContainer">
+  <div class="ordersEditeFormHeader">
+    <mat-icon color="primary">folder_shared</mat-icon>
+    <button mat-button (click)="resetForm()">
+      <mat-icon color="primary">edit_off</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="ordersEditeFormInputs">
+      <div *ngFor="let option of inputOption">
+        <mat-form-field appearance="outline" *ngIf="option.isNotSelect; else isSelectOptions">
+          <mat-label>{{option.inputName}}</mat-label>
+          <input [type]="option.type"
+                 matInput
+                 formControlName="{{option.inputServerName}}"
+                 autocomplete="new-password"
+                 name="new_{{option.inputServerName}}" >
+          <mat-error>
+            {{getError(option.inputServerName)}}
+          </mat-error>
+        </mat-form-field>
+
+        <ng-template #isSelectOptions>
+          <mat-form-field appearance="outline">
+            <mat-label>{{option.inputName}}</mat-label>
+            <mat-select formControlName="{{option.inputServerName}}">
+              <mat-option *ngFor="let select of option.selectOptions" [value]="select"
+                          (onSelectionChange)="createGroup(select)">
+                {{select}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="ordersEditeFormButtons">
+      <button mat-raised-button type="button" color="primary" (click)="closeEditeForm()">Cancel</button>
+      <button mat-raised-button type="submit" [disabled]="form.invalid" color="primary" (click)="changeOrders()">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+
+

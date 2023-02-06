@@ -17,8 +17,7 @@ export class LoginComponent implements OnInit {
     this.dialog.open(LoginFormComponent, {
       disableClose: true,
       exitAnimationDuration: '1s',
-      enterAnimationDuration: '1s',
-
+      enterAnimationDuration: '1s'
     });
   }
 

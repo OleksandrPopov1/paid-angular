@@ -20,9 +20,13 @@ export class UserMenuComponent implements OnInit {
     this.authService.setAuthUser();
     this.authService.getUser().subscribe(user => {
       if (user) {
-        user.create_at = this.changeDate(new Date(user.create_at));
-        user.update_at = this.changeDate(new Date(user.update_at));
-        user.last_login = this.changeDate(new Date(user.last_login));
+        const checkDate: number = new Date(user.create_at).getDate();
+
+        if (!!checkDate) {
+          user.create_at = this.changeDate(new Date(user.create_at));
+          user.update_at = this.changeDate(new Date(user.update_at));
+          user.last_login = this.changeDate(new Date(user.last_login));
+        }
 
         this.user = user;
 

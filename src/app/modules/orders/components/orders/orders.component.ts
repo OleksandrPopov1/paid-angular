@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, NavigationStart, Params, Router} from "@angular/router";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 
-import {LoadService} from "../../services";
-import {IFilterOptions} from "../../interfaces";
-import {filtersName} from "../../constants";
+import {GroupsService, LoadService} from "../../services";
+import {IInputOptions} from "../../interfaces";
+import {inputsFilters} from "../../constants";
 
 @Component({
   selector: 'app-orders',
@@ -13,11 +13,16 @@ import {filtersName} from "../../constants";
 })
 export class OrdersComponent implements OnInit {
   allParams: Params;
-  filtersOptions: IFilterOptions[];
+  filtersOptions: IInputOptions[];
   isLoading: boolean;
   isChecked = false;
 
-  constructor(private router: Router, private loadService: LoadService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private loadService: LoadService,
+    private activatedRoute: ActivatedRoute,
+    private groupsService: GroupsService
+  ) {
   }
 
   ngOnInit(): void {
@@ -26,7 +31,17 @@ export class OrdersComponent implements OnInit {
       this.isChecked = params['my'];
     });
 
-    this.filtersOptions = filtersName;
+    this.groupsService.getAll().subscribe(() => {
+      inputsFilters.map(options => {
+        if (options.inputServerName === 'group') {
+          this.groupsService.getNamesGroups().subscribe(groups => {
+            options.selectOptions = groups;
+          })
+        }
+      })
+    });
+
+    this.filtersOptions = inputsFilters;
 
     this.loadService.isLoading().subscribe(value => this.isLoading = value);
 
@@ -36,9 +51,7 @@ export class OrdersComponent implements OnInit {
       } else if (e instanceof NavigationEnd) {
         this.loadService.endLoading()
       }
-    })
-
-
+    });
   }
 
   resetFilters = (): void => {

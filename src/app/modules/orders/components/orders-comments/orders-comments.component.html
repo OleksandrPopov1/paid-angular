@@ -1,0 +1,25 @@
+<div class="commentsContainer">
+  <h3>Message: {{message || 'Empty'}}</h3>
+
+  <div>
+    <div class="newCommentContainer">
+      <div *ngIf="comment">
+        {{comment.comment}}
+      </div>
+
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Comment</mat-label>
+          <input formControlName="comment" matInput [autocomplete]="false">
+          <button type="submit" mat-icon-button matSuffix (click)="sendComment()">
+            <mat-icon color="primary">send</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+    <button mat-icon-button (click)="openEdite()">
+      <mat-icon color="primary">mode_edit</mat-icon>
+    </button>
+  </div>
+</div>
+

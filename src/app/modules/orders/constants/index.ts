@@ -1,2 +1,5 @@
 export * from './headersName';
-export * from './filtersName';
+export * from './inputsFilters';
+
+export * from './inputsEditeForm';
+export * from './editeFormErrors';

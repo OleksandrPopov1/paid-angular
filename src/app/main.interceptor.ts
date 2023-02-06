@@ -31,6 +31,8 @@ export class MainInterceptor implements HttpInterceptor {
           return this.handle401Error(request, next);
         }
 
+        console.log(res)
+
         return throwError(() => new Error('token invalid or expired'))
       })
     );
