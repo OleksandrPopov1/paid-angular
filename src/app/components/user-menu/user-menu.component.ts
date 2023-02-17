@@ -19,12 +19,16 @@ export class UserMenuComponent implements OnInit {
   ngOnInit(): void {
     this.authService.setAuthUser();
     this.authService.getUser().subscribe(user => {
-      if (user) {
-        this.user = user;
+      if (user?.create_at) {
+        const checkDate: number = new Date(user.create_at).getDate();
 
-        user.create_at = this.changeDate(new Date(user.create_at));
-        user.update_at = this.changeDate(new Date(user.update_at));
-        user.last_login = this.changeDate(new Date(user.last_login));
+        if (!!checkDate) {
+          user.create_at = this.changeDate(new Date(user.create_at));
+          user.update_at = this.changeDate(new Date(user.update_at));
+          user.last_login = this.changeDate(new Date(user.last_login));
+        }
+
+        this.user = user;
 
         this.userInitials = user.profile.name[0].toLocaleUpperCase() + user.profile.surname[0].toLocaleUpperCase();
       }
