@@ -13,5 +13,5 @@ export interface IEditeFormGroup {
   alreadyPaid: FormControl<number | null>;
   msg: FormControl<string | null>;
   status: FormControl<string | null>;
-  group: FormControl<string | null>
+  group: FormControl<string | number | null>
 }

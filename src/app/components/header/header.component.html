@@ -1,4 +1,11 @@
 <header class="headerContainer">
-  <h2>Paid</h2>
-  <app-user-menu></app-user-menu>
+  <button mat-raised-button color="primary" (click)="navigateToPage('/orders')">Paid</button>
+  <div>
+    <div class="headerButtonAdmin">
+      <button *ngIf="isAdmin" mat-raised-button color="primary" (click)="navigateToPage('/admin')">
+        Admin
+      </button>
+    </div>
+    <app-user-menu></app-user-menu>
+  </div>
 </header>

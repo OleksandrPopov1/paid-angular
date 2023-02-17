@@ -4,7 +4,6 @@ export interface IEditeFormErrors {
   email: string;
   phone: string;
   age: string;
-  msg: string;
   alreadyPaid: string;
   sum: string;
 }

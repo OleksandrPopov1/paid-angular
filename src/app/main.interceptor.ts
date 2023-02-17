@@ -31,8 +31,6 @@ export class MainInterceptor implements HttpInterceptor {
           return this.handle401Error(request, next);
         }
 
-        console.log(res)
-
         return throwError(() => new Error('token invalid or expired'))
       })
     );
@@ -57,6 +55,7 @@ export class MainInterceptor implements HttpInterceptor {
         catchError(() => {
           this.isRefreshing = false;
           this.authService.deleteTokens();
+          this.authService.deleteRole();
           this.router.navigate(['/login']);
           return throwError(() => new Error('Token invalid or expired'));
         })

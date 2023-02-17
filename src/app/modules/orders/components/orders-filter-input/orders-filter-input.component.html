@@ -1,6 +1,6 @@
 <mat-form-field appearance="fill" *ngIf="filterOptions.isNotSelect; else isSelectOptions">
   <mat-label>{{filterOptions.inputName}}</mat-label>
-  <input matInput (keyup)="getValue($event)" [value]="value">
+  <input type="{{filterOptions.type}}" matInput (keyup)="getValue($event)" [value]="value">
 </mat-form-field>
 
 

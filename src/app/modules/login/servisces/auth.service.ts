@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable, tap} from "rxjs";
 
 import {IAuth, ITokens} from "../interfacecs";
 import {urls} from "../../../constants";
-import {IAuthUser} from "../interfacecs/auth-user.interface";
+import {IUser} from "../../../share";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,9 @@ export class AuthService {
 
   private readonly _accessTokenKey = 'access';
   private readonly _refreshTokenKey = 'refresh';
-  private _authUser = new BehaviorSubject<IAuthUser | null>(null);
+  private readonly _userRoleKey = 'role';
+
+  private _authUser = new BehaviorSubject<IUser | null>(null);
 
   constructor(private httpClient: HttpClient) {
   }
@@ -22,6 +24,7 @@ export class AuthService {
     return this.httpClient.post<ITokens>(urls.auth.login, user).pipe(
       tap(value => {
         this._setTokens(value);
+        this.setAuthUser();
       })
     )
   }
@@ -32,6 +35,10 @@ export class AuthService {
         this._setTokens(value);
       })
     )
+  }
+
+  activate(password: string, token: string): Observable<string> {
+    return this.httpClient.post<string>(`${urls.auth.activate}/${token}`, {password});
   }
 
   private _setTokens(tokens: ITokens): void {
@@ -57,11 +64,27 @@ export class AuthService {
   }
 
   setAuthUser(): void {
-    this.httpClient.get<IAuthUser>(urls.user.myUser).subscribe(value => this._authUser.next(value));
+    this.httpClient.get<IUser>(urls.user.myUser).subscribe(user => {
+      this._authUser.next(user);
+      this._setRole(user.is_superuser);
+    });
   }
 
-  getUser(): Observable<IAuthUser | null> {
+  getUser(): Observable<IUser | null> {
     return this._authUser.asObservable();
+  }
+
+  private _setRole(isAdmin: boolean): void {
+    const role: string = isAdmin ? 'Admin' : 'User';
+    localStorage.setItem(this._userRoleKey, role);
+  }
+
+  getRole(): string {
+    return localStorage.getItem(this._userRoleKey) || '';
+  }
+
+  deleteRole(): void {
+    localStorage.removeItem(this._userRoleKey);
   }
 
 }

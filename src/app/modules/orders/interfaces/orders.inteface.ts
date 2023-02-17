@@ -1,22 +1,18 @@
+import {IComment} from "./comment.interface";
+
 export interface IGroup {
   id?: number;
   name: string;
-}
-
-export interface IComment {
-  id: number;
-  comment: string;
-  created_at: string;
 }
 
 export interface IManager {
   id: number;
   name: string;
   surname: string;
-  user: string
+  user: number;
 }
 
-export interface IOrdersUpdate {
+export interface IOrdersGeneral {
   name?: string;
   surname?: string;
   email?: string;
@@ -27,27 +23,19 @@ export interface IOrdersUpdate {
   course_type?: string;
   sum?: number;
   alreadyPaid?: number;
-  msg?: string;
   status?: string;
 }
 
-export interface IOrders extends IOrdersUpdate {
+export interface IOrdersUpdate extends IOrdersGeneral {
+  group?: number;
+}
+
+export interface IOrders extends IOrdersGeneral {
   id: number;
-  // name: string;
-  // surname: string;
-  // email: string;
-  // phone: string;
-  // age: number;
-  // course: string;
-  // course_format: string;
-  // course_type: string;
-  // sum: number;
-  // already_paid: number;
-  // msg: string;
-  // status: string;
   manager: IManager;
   created_at: string | Date;
   utm: string;
   comments: IComment[];
-  group: IGroup;
+  group: IGroup | undefined;
+  msg: string
 }

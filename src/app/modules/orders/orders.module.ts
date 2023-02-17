@@ -15,15 +15,18 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 import {OrdersRoutingModule} from './orders-routing.module';
 import {OrdersComponent} from './components/orders/orders.component';
 import {OrdersTableComponent} from './components/orders-table/orders-table.component';
 import {OrdersFilterInputComponent} from './components/orders-filter-input/orders-filter-input.component';
-import {MatExpansionModule} from "@angular/material/expansion";
-import { OrdersCommentsComponent } from './components/orders-comments/orders-comments.component';
-import { OrdersEditeFormComponent } from './components/orders-edite-form/orders-edite-form.component';
-import { OrdersEditeAddGroupComponent } from './components/orders-edite-add-group/orders-edite-add-group.component';
+import {OrdersEditeComponent} from './components/orders-edite/orders-edite.component';
+import {OrdersEditeFormComponent} from './components/orders-edite-form/orders-edite-form.component';
+import {OrdersEditeAddGroupComponent} from './components/orders-edite-add-group/orders-edite-add-group.component';
+import {OrdersCommentsComponent} from './components/orders-comments/orders-comments.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +34,10 @@ import { OrdersEditeAddGroupComponent } from './components/orders-edite-add-grou
     OrdersTableComponent,
     OrdersFilterInputComponent,
     DatepickerComponent,
-    OrdersCommentsComponent,
+    OrdersEditeComponent,
     OrdersEditeFormComponent,
     OrdersEditeAddGroupComponent,
+    OrdersCommentsComponent,
   ],
   imports: [
     CommonModule,
@@ -52,7 +56,9 @@ import { OrdersEditeAddGroupComponent } from './components/orders-edite-add-grou
     ReactiveFormsModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatDividerModule
   ]
 })
 export class OrdersModule {

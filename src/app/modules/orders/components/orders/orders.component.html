@@ -6,8 +6,12 @@
     </div>
 
     <div class="ordersHeaderCheckboxContainer">
-      <mat-checkbox class="example-margin" color="primary" [checked]="isChecked"
-                    (change)="getMy($event)"></mat-checkbox>
+      <mat-checkbox class="example-margin"
+                    color="primary"
+                    [checked]="isChecked"
+                    (change)="getMy($event)">
+
+      </mat-checkbox>
       <mat-label>My</mat-label>
     </div>
 
@@ -16,11 +20,12 @@
         <mat-icon color="primary">filter_alt_off</mat-icon>
       </button>
 
-      <button mat-icon-button (click)="resetFilters()">
+      <button mat-icon-button (click)="getExcel()">
         <mat-icon color="primary">sim_card_download</mat-icon>
       </button>
     </div>
   </div>
+
   <mat-progress-bar *ngIf="isLoading;else isNotLoading" mode="indeterminate"></mat-progress-bar>
   <app-orders-table></app-orders-table>
 </div>

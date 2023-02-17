@@ -1,0 +1,27 @@
+<div class="userContainer">
+  <input type="checkbox" id='{{user.id}}'>
+  <label htmlFor='{{user.id}}'>
+    <div class="reversible">
+      <div class="card tile-back">
+        <div class="card-body">
+          <p><b>Name</b>: {{user.profile.name}}</p>
+          <p><b>Surname</b>: {{user.profile.surname}}</p>
+          <p><b>Is Active</b>: {{user.is_active}}</p>
+          <p><b>Is Admin</b>: {{user.is_superuser}}</p>
+          <p><b>Created</b>: {{user.create_at}}</p>
+          <p><b>Last Login</b>: {{user.last_login}}</p>
+
+          <button mat-button (click)="copyLinkActivation()">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="card tile-front">
+        <div class="card-body">
+          <h3>ID: {{user.id}}</h3>
+          <h4>Email: {{user.email}}</h4>
+        </div>
+      </div>
+    </div>
+  </label>
+</div>

@@ -1,0 +1,35 @@
+<form [formGroup]="form">
+  <mat-card>
+    <mat-card-title class="activateFormHeader">
+      <p>Create password</p>
+      <button mat-icon-button (click)="openSnackBar()">
+        <mat-icon>info</mat-icon>
+      </button>
+    </mat-card-title>
+
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline" class="loginFormEmailInput">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password">
+          <mat-error>Required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="loginFormEmailInput">
+          <mat-label>Confirm Password</mat-label>
+          <input type="password" matInput formControlName="confirmPassword">
+          <mat-error>Required</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-error *ngIf="error" class="loginFormError">Different password</mat-error>
+
+    <mat-card-actions align="end">
+      <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary" (click)="activate()">Save
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -6,7 +6,6 @@ export const editeFormErrors: IEditeFormErrors = {
   email: 'Example: myMail@gmail.com',
   phone: 'Example: 380505550033',
   age: 'Min 18, Max 90',
-  msg: 'Max length 100',
   alreadyPaid: 'Min 1',
   sum: 'Min 1',
 }

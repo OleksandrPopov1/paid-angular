@@ -19,7 +19,7 @@ export class OrdersEditeAddGroupComponent implements OnInit {
   constructor(private groupsService: GroupsService, private matDialogRef: MatDialogRef<OrdersEditeAddGroupComponent>) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._initialForm();
   }
 
@@ -41,7 +41,7 @@ export class OrdersEditeAddGroupComponent implements OnInit {
   }
 
   closeDialog(): void {
-    this.newGroup.emit(undefined);
+    this.newGroup.emit(null);
     this.matDialogRef.close();
   }
 

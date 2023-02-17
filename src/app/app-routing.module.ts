@@ -9,7 +9,8 @@ const routes: Routes = [
     path: '', component: MainLayoutComponent, children: [
       {path: '', redirectTo: 'orders', pathMatch: 'full'},
       {path: 'orders', loadChildren: () => import('./modules/orders/orders.module').then(value => value.OrdersModule)},
-      {path: 'login', loadChildren: () => import('./modules/login/login.module').then(value => value.LoginModule)}
+      {path: 'login', loadChildren: () => import('./modules/login/login.module').then(value => value.LoginModule)},
+      {path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(value => value.AdminModule)}
     ]
   }
 ];

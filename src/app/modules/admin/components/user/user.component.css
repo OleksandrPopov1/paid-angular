@@ -1,0 +1,98 @@
+.userContainer {
+  width: 30vw;
+  height: 350px;
+}
+
+input {
+  display: none;
+}
+
+label[for=test] {
+  display: block;
+  -webkit-perspective: 800px;
+  perspective: 800px;
+}
+
+.reversible {
+  position: relative;
+  width: 250px;
+  margin: 50px auto;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: transform 1s ease;
+  transition: all 1s
+}
+
+input[type=checkbox]:checked + label .reversible {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.reversible .card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.tile-front {
+  z-index: 2;
+}
+
+.tile-front:hover {
+  cursor: pointer;
+}
+
+.tile-back {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  font-size: 18px;
+  color: snow;
+  text-align: center;
+}
+
+.card-body > p {
+  margin-bottom: 0;
+}
+
+.card-footer {
+  font-size: 2rem;
+}
+
+
+.card {
+  background-color: #4e48da;
+  height: 20rem;
+  transition: all .8s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+
+}
+
+.userContainer button {
+  margin-top: 16px;
+  background-color: #4e48da;
+  border: none;
+  transition: 300ms;
+}
+
+.userContainer button:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}

@@ -3,5 +3,5 @@ export interface IInputOptions {
   inputServerName: string;
   isNotSelect: boolean;
   selectOptions: string[];
-  type : string;
+  type: string;
 }

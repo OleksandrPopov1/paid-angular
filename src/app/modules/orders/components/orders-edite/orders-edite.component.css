@@ -1,0 +1,56 @@
+.editeContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90vw;
+  margin: 10px;
+}
+
+.lastCommentHeaderContainer,
+.lastCommentBodyContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.lastCommentHeaderContainer > h2 {
+  margin: 0;
+}
+
+.lastCommentBodyContainer{
+  margin: 10px 0;
+}
+
+.avatar {
+  width: 3.5vw;
+  border-radius: 100%;
+  text-align: center;
+
+  background: rgb(2, 0, 36);
+  background: linear-gradient(0deg, rgb(159, 85, 26) 0%, rgb(220, 170, 15) 50%, rgb(248, 207, 13) 100%);
+
+  transition: 400ms;
+}
+
+.avatar span {
+  line-height: 7vh;
+  color: snow;
+}
+
+
+.lastCommentBodyContainer mat-card-content {
+  width: 33vw;
+}
+
+.lastCommentDate {
+  font-size: 8px;
+}
+
+.mat-form-field {
+  width: 40vw;
+}
+
+.editeContainer > button .mat-icon,
+.commentsContainer > form button .mat-icon {
+  transform: scale(1.5);
+}

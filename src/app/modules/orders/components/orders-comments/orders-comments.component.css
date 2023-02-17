@@ -1,16 +1,47 @@
-.commentsContainer{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90vw;
+.mat-dialog-container {
+  overflow-y: hidden;
 }
 
-.commentsContainer > div{
+.commentContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  margin: 20px 0;
+  width: 50vw;
 }
 
-.mat-form-field{
-  width: 40vw;
+.commentAdmin {
+  flex-direction: row-reverse;
 }
+
+.avatar {
+  width: 3.5vw;
+  border-radius: 100%;
+  text-align: center;
+
+  background: rgb(2, 0, 36);
+  margin: 0 10px;
+}
+
+.userAvatar {
+  background: linear-gradient(0deg, rgb(17, 56, 22) 0%, rgb(24, 131, 18) 50%, rgb(13, 248, 33) 100%);
+}
+
+.adminAvatar {
+  background: linear-gradient(0deg, rgb(56, 17, 17) 0%, rgb(150, 21, 21) 50%, rgb(245, 6, 6) 100%);
+}
+
+.avatar span {
+  line-height: 7vh;
+  color: snow;
+}
+
+.commentContainer > mat-card {
+  max-width: 30vw;
+}
+
+.commentDate {
+  font-size: 8px;
+}
+

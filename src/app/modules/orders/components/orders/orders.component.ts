@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, NavigationStart, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 
-import {GroupsService, LoadService} from "../../services";
+import {GroupsService, OrdersService} from "../../services";
 import {IInputOptions} from "../../interfaces";
 import {inputsFilters} from "../../constants";
+import {LoadService} from "../../../../share";
 
 @Component({
   selector: 'app-orders',
@@ -21,7 +22,8 @@ export class OrdersComponent implements OnInit {
     private router: Router,
     private loadService: LoadService,
     private activatedRoute: ActivatedRoute,
-    private groupsService: GroupsService
+    private groupsService: GroupsService,
+    private ordersService: OrdersService
   ) {
   }
 
@@ -43,26 +45,33 @@ export class OrdersComponent implements OnInit {
 
     this.filtersOptions = inputsFilters;
 
-    this.loadService.isLoading().subscribe(value => this.isLoading = value);
+    this.loadService.isLoadingData().subscribe(value => this.isLoading = value);
 
     this.router.events.subscribe(e => {
-      if (e instanceof NavigationStart) {
-        this.loadService.startLoading()
-      } else if (e instanceof NavigationEnd) {
-        this.loadService.endLoading()
-      }
+      this.loadService.checkLoading(e);
     });
   }
 
-  resetFilters = (): void => {
+  resetFilters(): void {
     this.router.navigate([], {queryParams: {}});
   };
 
-  getMy = ({checked}: MatCheckboxChange): void => {
+  getMy({checked}: MatCheckboxChange): void {
     const check = checked ? checked : null;
     this.router.navigate([], {
       queryParams: {...this.allParams, 'my': check, 'page': 1},
       queryParamsHandling: "merge"
+    });
+  }
+
+  getExcel(): void {
+    this.ordersService.getExcel(this.allParams).subscribe(data => {
+      const a = document.createElement('a');
+      a.setAttribute('type', 'hidden');
+      a.href = URL.createObjectURL(data);
+      a.download = 'orders.xls';
+      a.click();
+      a.remove();
     });
   }
 

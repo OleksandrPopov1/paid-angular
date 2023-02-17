@@ -1,3 +1,17 @@
-main{
+main {
   min-height: 70vh;
+}
+
+.loadModule {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(151, 156, 169, 0.4);
+  z-index: 300;
 }

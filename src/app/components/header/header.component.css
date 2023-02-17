@@ -10,3 +10,23 @@
   background-color: #22539f;
   color: snow;
 }
+
+.headerContainer > button {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.headerContainer > div {
+  display: flex;
+}
+
+.headerButtonAdmin {
+  display: flex;
+  align-items: center;
+  margin-right: 1vw;
+}
+
+.headerButtonAdmin > button {
+  font-size: 20px;
+  font-weight: 600;
+}

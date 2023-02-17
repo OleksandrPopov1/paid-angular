@@ -1,0 +1,50 @@
+<div class="editeContainer">
+  <h3>Message: {{message || 'Empty'}}</h3>
+
+  <div class="commentsContainer">
+    <div *ngIf="lastComment" class="lastCommentContainer">
+      <div class="lastCommentHeaderContainer">
+        <h2>Last Comment</h2>
+        <button mat-button color="primary" (click)="showAllComments()">
+          <span>All</span>
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </div>
+
+      <div class="lastCommentBodyContainer">
+        <div>
+          <div class="avatar">
+            <span>{{lastManagerInitials}}</span>
+          </div>
+        </div>
+
+        <mat-card>
+          <mat-card-content>
+            <h3>{{lastComment.manager.name}} </h3>
+            <p>{{lastComment.comment}}</p>
+            <p class="lastCommentDate">{{getDate(lastComment.created_at)}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <form [formGroup]="form">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Comment</mat-label>
+        <input formControlName="comment" matInput>
+        <button type="submit"
+                mat-icon-button
+                matSuffix
+                (click)="sendComment()"
+                [disabled]="isDisableEdit || form.invalid">
+          <mat-icon color="{{isDisableEdit || form.invalid ? 'grey' : 'primary'}}">send</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <button mat-icon-button (click)="openEdite()" [disabled]="isDisableEdit">
+    <mat-icon color="{{isDisableEdit ? 'grey' : 'primary'}}">mode_edit</mat-icon>
+  </button>
+</div>
+

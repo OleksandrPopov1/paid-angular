@@ -1,0 +1,9 @@
+<div class="usersContainer">
+  <button mat-raised-button color="primary" (click)="openCreateForm()">Create new User</button>
+  <div>
+    <app-user *ngFor="let user of users" [user]="user"></app-user>
+  </div>
+  <div *ngIf="isLoadingUsers" class="usersSpinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

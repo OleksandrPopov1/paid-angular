@@ -1,25 +1,25 @@
-<div class="commentsContainer">
-  <h3>Message: {{message || 'Empty'}}</h3>
+<div>
+  <h2>Comments</h2>
+  <mat-divider></mat-divider>
+  <mat-dialog-content #allComments>
+    <div>
+      <div class="commentContainer {{this.isAdminComment(comment) ? 'commentAdmin' : ''}}"
+           *ngFor="let comment of comments"
+      >
+        <div>
+          <div class="avatar {{this.isAdminComment(comment) ? 'adminAvatar' : 'userAvatar'}}">
+            <span>{{getInitialManager(comment.manager)}}</span>
+          </div>
+        </div>
 
-  <div>
-    <div class="newCommentContainer">
-      <div *ngIf="comment">
-        {{comment.comment}}
+        <mat-card>
+          <mat-card-content>
+            <h3>{{comment.manager.name}} </h3>
+            <p>{{comment.comment}}</p>
+            <p class="commentDate">{{getDate(comment.created_at)}}</p>
+          </mat-card-content>
+        </mat-card>
       </div>
-
-      <form [formGroup]="form">
-        <mat-form-field appearance="outline">
-          <mat-label>Comment</mat-label>
-          <input formControlName="comment" matInput [autocomplete]="false">
-          <button type="submit" mat-icon-button matSuffix (click)="sendComment()">
-            <mat-icon color="primary">send</mat-icon>
-          </button>
-        </mat-form-field>
-      </form>
     </div>
-    <button mat-icon-button (click)="openEdite()">
-      <mat-icon color="primary">mode_edit</mat-icon>
-    </button>
-  </div>
+  </mat-dialog-content>
 </div>
-

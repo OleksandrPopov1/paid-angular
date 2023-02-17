@@ -1,13 +1,13 @@
-import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {map} from "rxjs";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-
-import {IHeaderOptions, IOrders, IOrdersPaginated} from "../../interfaces";
-import {headersNames} from "../../constants";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {OrdersCommentsComponent} from "../orders-comments/orders-comments.component";
+
+import {IHeaderOptions, IOrders,} from "../../interfaces";
+import {headersNames} from "../../constants";
+import {IPaginated} from "../../../../share";
 
 @Component({
   selector: 'app-orders-table',
@@ -32,7 +32,6 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  // @ViewChild(OrdersCommentsComponent) commentsComponent: OrdersCommentsComponent;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -42,18 +41,7 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.data.pipe(
-      map(value => value['orders'] as IOrdersPaginated<IOrders>)
-    ).subscribe((value) => {
-      this.orders = value.results.map(value => {
-        const date: string = new Date(value.created_at).toLocaleDateString('en-GB');
-        value.created_at = date.replaceAll('/', '-');
-        return value;
-      });
-
-      this.count = value.count;
-    })
-
+    this._initialData();
     this.headers = headersNames;
     this.headersName = headersNames.map(value => value.headerServerName);
   }
@@ -75,28 +63,16 @@ export class OrdersTableComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex = 0;
       this.router.navigate([], {queryParams: {...this.allParams, order, page: 1}});
     })
-
-    // this.commentsComponent.newOrders.subscribe(newOrders=>{
-    //   const find = this.orders.findIndex(oneOrders => oneOrders.id === newOrders.id);
-    //   console.log(this.orders)
-    //   if (find !== -1) {
-    //     console.log(find)
-    //     this.orders[find] = newOrders;
-    //     console.log(this.orders)
-    //     this.detectorRef.detectChanges()
-    //   }
-    // })
   }
 
-  // findChange(newOrders: IOrders): void {
-    // const find = this.orders.findIndex(oneOrders => oneOrders.id === newOrders.id);
-    // console.log(this.orders)
-    // if (find !== -1) {
-    //   console.log(find)
-    //   this.orders[find] = newOrders;
-    //   console.log(this.orders)
-    //   this.detectorRef.detectChanges()
-    // }
-  // }
+
+  _initialData(): void {
+    this.activatedRoute.data.pipe(
+      map(value => value['orders'] as IPaginated<IOrders>)
+    ).subscribe((value) => {
+      this.orders = value.results;
+      this.count = value.count;
+    })
+  }
 
 }

@@ -1,93 +1,41 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
-import {IComment, IOrders} from "../../interfaces";
-import {OrdersService} from "../../services";
-import {OrdersEditeFormComponent} from "../orders-edite-form/orders-edite-form.component";
-
+import {IComment} from "../../interfaces";
+import {IProfile} from "../../../../share";
 
 @Component({
   selector: 'app-orders-comments',
   templateUrl: './orders-comments.component.html',
   styleUrls: ['./orders-comments.component.css']
 })
+export class OrdersCommentsComponent implements OnInit, AfterViewInit {
+  comments: IComment[];
 
-export class OrdersCommentsComponent implements OnInit {
-  form: FormGroup;
-  comment: IComment;
-  message: string;
-  dialogRef: MatDialogRef<OrdersEditeFormComponent>
+  @ViewChild('allComments')
+  allComments: ElementRef
 
-  @Input() orders: IOrders;
-
-  // @Output() newOrders: EventEmitter<IOrders> = new EventEmitter();
-
-
-  constructor(private ordersService: OrdersService, private dialog: MatDialog) {
+  constructor(@Inject(MAT_DIALOG_DATA) private data: any) {
   }
 
   ngOnInit() {
-    this._initialForm();
-
-    if (this.orders.comments.length) {
-      this.comment = this.orders.comments[0];
-    }
-
-    this.message = this.orders.msg || '';
+    const {comments} = this.data;
+    this.comments = comments;
   }
 
-  _initialForm(): void {
-    this.form = new FormGroup({
-      comment: new FormControl('')
-    })
+  ngAfterViewInit() {
+    this.allComments.nativeElement.scrollTop = this.allComments.nativeElement.scrollHeight;
   }
 
-  sendComment(): void {
-    console.log(this.form.value);
-    // this.orders.comment.push() = ;
-    // this.ordersService.updateById(this.orders.id, this.orders);
-    this.form.reset();
+  getDate(date: string): string {
+    return new Date(date).toLocaleString();
   }
 
-
-  openEdite(): void {
-    this.dialogRef = this.dialog.open(OrdersEditeFormComponent, {
-      exitAnimationDuration: '0.5s',
-      enterAnimationDuration: '0.5s',
-      data: {
-        orders: this.orders
-      }
-    });
-
-    this.dialogRef.componentInstance.newOrders.subscribe(result => {
-      console.log(this.orders)
-      this.orders = result;
-      // this.orders.name = result.name;
-      // this.orders.surname = result.surname;
-      // this.orders.msg = result.msg;
-      // this.orders.age = result.age;
-      // this.orders.group = result.group;
-      // this.orders.alreadyPaid = result.alreadyPaid;
-      // this.orders.course = result.course;
-      // this.orders.course_format = result.course_format;
-      // this.orders.course_type = result.course_type;
-      // this.orders.email = result.email;
-      // this.orders.phone = result.phone;
-      // this.orders.status = result.status;
-      // this.orders.sum = result.sum;
-      console.log(this.orders)
-    });
-
-
-    // this.dialog.afterAllClosed.subscribe(() => {
-    //   console.log(1)
-    //   const newOrders = this.orders;
-    //   newOrders.name =  'sasa';
-    //   this.orders.name = 'sasa';
-    //   // this.orders = {...this.dialogRef.componentInstance.orders};
-    //
-    // });
+  getInitialManager(manager: IProfile): string {
+    return manager.name[0].toLocaleUpperCase() + manager.surname[0].toLocaleUpperCase();
   }
 
+  isAdminComment(comment): boolean {
+    return comment.manager.id === 1;
+  }
 }

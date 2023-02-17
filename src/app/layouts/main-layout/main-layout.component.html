@@ -1,5 +1,8 @@
 <app-header *ngIf="isAuth"></app-header>
 <main>
+  <div class="loadModule" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
   <router-outlet></router-outlet>
 </main>
 <app-footer *ngIf="isAuth"></app-footer>

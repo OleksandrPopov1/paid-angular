@@ -6,20 +6,26 @@ const auth = `${API}/auth`;
 const orders = `${API}/orders`;
 const user = `${API}/users`;
 const groups = `${API}/groups`;
+const admin = `${API}/admin`;
 
 const urls = {
   auth: {
     login: auth,
-    refresh: `${auth}/refresh`
+    refresh: `${auth}/refresh`,
+    activate: `${auth}/activate`
   },
   orders: {
-    orders
+    orders,
+    excel: `${orders}/excel`
   },
   groups: {
     groups
   },
   user: {
     myUser: `${user}/my`
+  },
+  admin: {
+    user: `${admin}/users`
   }
 };
 

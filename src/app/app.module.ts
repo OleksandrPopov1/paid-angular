@@ -7,6 +7,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatButtonModule} from "@angular/material/button";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -14,7 +15,7 @@ import {MainLayoutComponent} from './layouts/main-layout/main-layout.component';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {MainInterceptor} from "./main.interceptor";
-import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import {UserMenuComponent} from './components/user-menu/user-menu.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserMenuComponent } from './components/user-menu/user-menu.component';
     MatCardModule,
     MatMenuModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

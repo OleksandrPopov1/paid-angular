@@ -17,7 +17,7 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       this.allParams = params;
       this.startValue = params['start_date'] ?? '';
@@ -31,9 +31,12 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
     this._initialForm();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.range.valueChanges.subscribe(value => {
-      if (!!value.start && !!value.end) {
+      const validStart = this.dateValidator(value.start);
+      const validEnd = this.dateValidator(value.end);
+
+      if (validStart && validEnd) {
         const start_date = this.range.value.start.toLocaleDateString('en-GB').split('/').reverse().join('/').replaceAll('/', '-');
         const end_date = this.range.value.end.toLocaleDateString('en-GB').split('/').reverse().join('/').replaceAll('/', '-');
         this.router.navigate([], {queryParams: {...this.allParams, start_date, end_date, page: 1}});
@@ -43,9 +46,13 @@ export class DatepickerComponent implements OnInit, AfterViewInit {
 
   _initialForm(): void {
     this.range = new FormGroup({
-      start: new FormControl<Date | null>(new Date(this.startValue) ?? null),
-      end: new FormControl<Date | null>(new Date(this.endValue) ?? null)
+      start: new FormControl<Date>(new Date(this.startValue)),
+      end: new FormControl<Date>(new Date(this.endValue))
     })
+  }
+
+  dateValidator(date: any): boolean {
+    return (!isNaN(date) && date instanceof Date)
   }
 
 }

@@ -1,5 +1,5 @@
 export * from './orders.inteface';
-export * from './orders-paginated.interface';
+export * from './comment.interface';
 
 export * from './header-options.interface';
 export * from './input-options.interface';

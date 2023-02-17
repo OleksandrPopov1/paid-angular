@@ -23,14 +23,14 @@ export class OrdersFilterInputComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.allParams = params;
       this.value = params[`${this.filterOptions.inputServerName}`] ?? '';
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (!this.filterOptions.isNotSelect) {
       this.inputSelect.valueChange.subscribe((value) => {
         this.router.navigate([], {
@@ -41,9 +41,10 @@ export class OrdersFilterInputComponent implements OnInit, AfterViewInit {
 
   }
 
-  getValue = ({target}: Event) => {
+  getValue({target}: Event): void {
     const {value} = target as HTMLInputElement;
     clearTimeout(this.timeout);
+
     this.timeout = setTimeout(() => {
       const newValue = value === '' ? null : value;
 
