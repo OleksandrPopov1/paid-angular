@@ -19,7 +19,7 @@ export class UserMenuComponent implements OnInit {
   ngOnInit(): void {
     this.authService.setAuthUser();
     this.authService.getUser().subscribe(user => {
-      if (user?.create_at) {
+      if (user) {
         const checkDate: number = new Date(user.create_at).getDate();
 
         if (!!checkDate) {

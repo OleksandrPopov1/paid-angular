@@ -16,6 +16,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {MainInterceptor} from "./main.interceptor";
 import {UserMenuComponent} from './components/user-menu/user-menu.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {UserMenuComponent} from './components/user-menu/user-menu.component';
     MainLayoutComponent,
     HeaderComponent,
     FooterComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,
