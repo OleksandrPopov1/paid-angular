@@ -15,6 +15,7 @@ import {IActivateFormGroup} from "../../interfacecs";
 export class ActivateFormComponent implements OnInit {
   form: FormGroup<IActivateFormGroup>;
   error = false;
+  errorToken = false;
   token: string;
 
   constructor(
@@ -28,6 +29,7 @@ export class ActivateFormComponent implements OnInit {
   ngOnInit() {
     this._initialForm();
     this.token = this.router.url.split('/').reverse()[0];
+    this.openSnackBar();
   }
 
   _initialForm(): void {
@@ -45,15 +47,25 @@ export class ActivateFormComponent implements OnInit {
 
   activate(): void {
     if (this.form.value.password === this.form.value.confirmPassword) {
-      this.authService.activate(this.form.value.password, this.token).subscribe(() => {
-        this.error = false;
-        this.matDialogRef.close();
-        this.router.navigate(['/login'])
-      });
+      this.authService.activate(this.form.value.password, this.token).subscribe({
+        next: () => {
+          this.error = false;
+          this.matDialogRef.close();
+          this.router.navigate(['/login']);
+        },
+        error: () => {
+          this.error = false;
+          this.errorToken = true;
+          this.form.reset();
+        }
+      })
     } else {
+      this.errorToken = false;
       this.error = true;
       this.form.reset();
     }
+
+    this.snackBar.dismiss();
   }
 
   openSnackBar() {

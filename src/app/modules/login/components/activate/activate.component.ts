@@ -16,7 +16,8 @@ export class ActivateComponent implements OnInit {
     this.dialog.open(ActivateFormComponent, {
       disableClose: true,
       exitAnimationDuration: '1s',
-      enterAnimationDuration: '1s'
+      enterAnimationDuration: '1s',
+      autoFocus: false
     });
   }
 

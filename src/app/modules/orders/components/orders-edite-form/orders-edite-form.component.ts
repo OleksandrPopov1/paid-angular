@@ -17,6 +17,7 @@ export class OrdersEditeFormComponent implements OnInit {
   orders: IOrders;
   form: FormGroup<IEditeFormGroup>;
   inputOption: IInputOptions[];
+  status = 'В работе';
   groups: IGroup[];
   dialogRefEditeGroup: MatDialogRef<OrdersEditeAddGroupComponent>;
   onEditGroup = false;
@@ -43,7 +44,11 @@ export class OrdersEditeFormComponent implements OnInit {
       this.groups = groups;
     })
 
-    this._initialForm(orders);
+    if (this.orders.status && this.orders.status !== 'Новый') {
+      this.status = this.orders.status;
+    }
+
+    this._initialForm(this.orders);
   }
 
   _initialForm(orders: IOrders): void {
@@ -77,7 +82,7 @@ export class OrdersEditeFormComponent implements OnInit {
       sum: new FormControl(orders.sum!, [
         Validators.min(1), Validators.max(2147483647)
       ]),
-      status: new FormControl('В работе'),
+      status: new FormControl(this.status),
       course: new FormControl(orders.course!),
       course_format: new FormControl(orders.course_format!),
       course_type: new FormControl(orders.course_type!),

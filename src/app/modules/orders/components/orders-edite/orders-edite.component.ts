@@ -41,7 +41,8 @@ export class OrdersEditeComponent implements OnInit {
 
     this.lastComment = this.orders.comments[0];
     if (this.lastComment) {
-      this.lastManagerInitials = this.lastComment.manager.name[0].toLocaleUpperCase() + this.lastComment.manager.surname[0].toLocaleUpperCase();
+      this.lastManagerInitials = this.lastComment.manager.name[0].toLocaleUpperCase() +
+        this.lastComment.manager.surname[0].toLocaleUpperCase();
     }
 
     this.comments = this.orders.comments.reverse() || [];
@@ -80,6 +81,10 @@ export class OrdersEditeComponent implements OnInit {
     this.commentService.addNewComment(newComment, this.orders.id).subscribe(comment => {
       this.lastComment = comment;
       this.comments.push(comment);
+
+      this.lastManagerInitials = comment.manager.name[0].toLocaleUpperCase() + comment.manager.surname[0].toLocaleUpperCase();
+
+      this.updateOrders();
     });
 
     this.form.reset();
@@ -94,7 +99,7 @@ export class OrdersEditeComponent implements OnInit {
     this.dialogRef = this.dialog.open(OrdersEditeFormComponent, {
       exitAnimationDuration: '0.5s',
       enterAnimationDuration: '0.5s',
-      autoFocus: false,
+      autoFocus: "input",
       data: {
         orders: this.orders
       }
@@ -102,17 +107,21 @@ export class OrdersEditeComponent implements OnInit {
 
     this.dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.ordersService.getById(this.orders.id).subscribe(newOrders => {
-          const changeOrders: any = this.orders;
-          const keysArray = Object.keys(this.orders);
-
-          keysArray.forEach(key => {
-            changeOrders[key] = newOrders[key];
-          })
-
-          this.orders = changeOrders;
-        })
+        this.updateOrders();
       }
+    })
+  }
+
+  updateOrders(): void {
+    this.ordersService.getById(this.orders.id).subscribe(newOrders => {
+      const changeOrders: any = this.orders;
+      const keysArray = Object.keys(this.orders);
+
+      keysArray.forEach(key => {
+        changeOrders[key] = newOrders[key];
+      })
+
+      this.orders = changeOrders;
     })
   }
 
