@@ -1,0 +1,57 @@
+.ordersStatisticManagerContainer,
+.ordersStatisticContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ordersStatisticManagerContainer > h2 {
+  box-sizing: border-box;
+  padding: 15px;
+  border-radius: 20px;
+
+  background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(77, 18, 129, 1) 50%, rgba(26, 31, 176, 1) 100%);
+  color: white;
+}
+
+.ordersStatisticContainer > h3 {
+  font-size: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 15px;
+  margin: 1vw;
+  width: 10vw;
+
+  color: snow;
+  background-color: #4e48da;
+
+  border-radius: 25px;
+}
+
+.ordersStatisticStatusesContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80vw;
+}
+
+.ordersStatisticStatusesContainer > div {
+  width: 15vw;
+}
+
+.ordersStatisticStatusesContainer p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  box-sizing: border-box;
+  padding: 12px;
+
+  color: snow;
+  background-color: #060370;
+
+  border-radius: 25px;
+}

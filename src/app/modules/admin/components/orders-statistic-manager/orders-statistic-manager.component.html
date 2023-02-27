@@ -1,0 +1,11 @@
+<div class="ordersStatisticManagerContainer">
+  <h2>{{user.profile.name}} {{user.profile.surname}}</h2>
+  <div class="ordersStatisticContainer">
+    <h3>Orders: {{ordersCount}}</h3>
+    <div class="ordersStatisticStatusesContainer">
+      <div *ngFor="let status of statuses">
+        <p>{{status.status ?? 'null'}} - {{status.count}}</p>
+      </div>
+    </div>
+  </div>
+</div>
