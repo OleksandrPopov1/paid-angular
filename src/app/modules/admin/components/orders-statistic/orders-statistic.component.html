@@ -1,0 +1,12 @@
+<div class="ordersStatisticContainer">
+  <h2>All orders: {{ordersCount}}</h2>
+  <div class="ordersStatisticStatusesContainer">
+    <div *ngFor="let status of statuses">
+      <p>{{status.status ?? 'null'}} - {{status.count}}</p>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <router-outlet></router-outlet>
+</div>

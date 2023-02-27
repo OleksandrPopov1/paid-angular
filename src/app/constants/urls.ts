@@ -25,7 +25,8 @@ const urls = {
     myUser: `${user}/my`
   },
   admin: {
-    user: `${admin}/users`
+    user: `${admin}/users`,
+    statistic: `${admin}/statistic`
   }
 };
 

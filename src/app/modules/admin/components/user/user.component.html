@@ -20,6 +20,23 @@
         <div class="card-body">
           <h3>ID: {{user.id}}</h3>
           <h4>Email: {{user.email}}</h4>
+
+          <div class="banButtonsContainer">
+            <button mat-button (click)="banUser()">
+              <mat-icon>no_accounts</mat-icon>
+              <span>Ban</span>
+            </button>
+
+            <button mat-button (click)="unbanUser()">
+              <mat-icon>account_circle</mat-icon>
+              <span>Unban</span>
+            </button>
+          </div>
+
+          <button mat-button (click)="showStatistic()">
+            <mat-icon>query_stats</mat-icon>
+            <span>Statistic</span>
+          </button>
         </div>
       </div>
     </div>

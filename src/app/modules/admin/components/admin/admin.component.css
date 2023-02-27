@@ -2,3 +2,20 @@
   background-color: snow;
 }
 
+.adminNavigateContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  height: 15vh;
+
+  box-sizing: border-box;
+  padding: 20px;
+
+  background: linear-gradient(0deg, rgb(29, 48, 80) 0%, rgb(36, 67, 121) 50%, rgb(34, 80, 148) 100%);
+}
+
+.adminNavigateContainer > button {
+  font-size: 20px;
+  font-weight: 600;
+}

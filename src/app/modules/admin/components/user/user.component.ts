@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 import {AdminService} from "../../services";
 import {IUser} from "../../../../share";
@@ -13,7 +14,7 @@ export class UserComponent implements OnInit {
   @Input()
   user: IUser;
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,6 +31,23 @@ export class UserComponent implements OnInit {
       const link = window.origin + `/login/activate/` + token;
       navigator.clipboard.writeText(link);
     })
+  }
+
+  banUser(): void {
+    this.adminService.banUser(this.user.id).subscribe(() => {
+      this.user.is_active = false;
+    });
+  }
+
+  unbanUser(): void {
+    this.adminService.unbanUser(this.user.id).subscribe(() => {
+      this.user.is_active = true;
+    });
+  }
+
+  showStatistic(): void {
+    this.adminService.setCurrentUser(this.user);
+    this.router.navigate([`admin/statistic/${this.user.id}`]);
   }
 
 }

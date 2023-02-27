@@ -1,11 +1,11 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ActivatedRoute} from "@angular/router";
+import {map} from "rxjs";
 
 import {AdminService} from "../../services";
 import {UserCreateFormComponent} from "../user-create-form/user-create-form.component";
 import {IPaginated, IUser} from "../../../../share";
-import {map} from "rxjs";
 
 @Component({
   selector: 'app-users',
@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
 
   _initialData(): void {
     this.activatedRoute.data.pipe(
-      map(data => data['admin'] as IPaginated<IUser>)
+      map(data => data['users'] as IPaginated<IUser>)
     ).subscribe(value => {
       this.users = value.results;
       this.maxPage = value.count / 9;
@@ -45,7 +45,7 @@ export class UsersComponent implements OnInit {
   }
 
   loadUsers(page: number): void {
-    this.adminService.getAll({page, size: 9}).subscribe(users => {
+    this.adminService.getAllUsers({page, size: 9}).subscribe(users => {
       this.users = [...this.users, ...users.results];
       this.isLoadingUsers = false;
     })

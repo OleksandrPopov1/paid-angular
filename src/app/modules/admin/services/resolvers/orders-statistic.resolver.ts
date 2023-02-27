@@ -7,17 +7,17 @@ import {
 import {Observable} from 'rxjs';
 
 import {AdminService} from "../admin.service";
-import {IPaginated, IUser} from "../../../../share";
+import {IStatistic} from "../../intarfaces";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminResolver implements Resolve<IPaginated<IUser>> {
+export class OrdersStatisticResolver implements Resolve<IStatistic> {
 
   constructor(private adminService: AdminService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IPaginated<IUser>> {
-    return this.adminService.getAllUsers({page: 1, size: 9});
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IStatistic> {
+    return this.adminService.getStatisticAllOrders();
   }
 }

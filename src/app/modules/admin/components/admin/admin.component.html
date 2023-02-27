@@ -1,3 +1,13 @@
 <div class="adminContainer">
-  <app-users></app-users>
+  <div>
+    <div class="adminNavigateContainer">
+      <button mat-raised-button color="primary" (click)="navigateToPage('users')">
+        Users
+      </button>
+      <button mat-raised-button color="primary" (click)="navigateToPage('statistic')">
+        Statistic
+      </button>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
 </div>
